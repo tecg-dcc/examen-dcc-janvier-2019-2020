@@ -1,0 +1,84 @@
+body {
+  font-family: "Avenir Next", sans-serif;
+  background: $bcg;
+  font-size: $base-font-size;
+}
+
+.container {
+  max-width: 90%;
+  margin: 3rem auto 0;
+}
+
+.grid {
+  max-width: 50rem;
+  display: grid;
+  margin: 0 auto;
+  padding: 0;
+  grid-gap: .625rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid__item {
+  background: $number;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  border-radius: 0.5rem;
+  -webkit-transition: all 0.5s cubic-bezier(0.28, 1.24, 0.05, 1.63);
+  -moz-transition: all 0.5s cubic-bezier(0.28, 1.24, 0.05, 1.63);
+  -ms-transition: all 0.5s cubic-bezier(0.28, 1.24, 0.05, 1.63);
+  -o-transition: all 0.5s cubic-bezier(0.28, 1.24, 0.05, 1.63);
+  transition: all 0.5s cubic-bezier(0.28, 1.24, 0.05, 1.63);
+}
+
+.ribbon-wrapper {
+  width: rem(80);
+  height: rem(80);
+  overflow: hidden;
+  position: absolute;
+  top: - rem(3);
+  left: - rem(3);
+
+  .ribbon {
+    text-align: center;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    position: relative;
+    padding: rem(5) 0;
+    top: rem(15);
+    left: - rem(30);
+    width: rem(120);
+    background-color: $ribbon;
+  }
+}
+
+.premier.animate {
+  transform: scale(1.3);
+  z-index: 1;
+  border-radius: rem(12.8);
+}
+
+.multiple-3-9 {
+  background: $multiple-3-9;
+}
+
+.multiple-3 {
+  background: $multiple-3;
+}
+
+.premier {
+  background: $premier;
+}
+
+@media screen and (min-width: 850px) {
+  .grid {
+    grid-gap: rem(10);
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

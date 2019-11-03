@@ -2,30 +2,30 @@ const app = {
   cacheDom() {
     this.app = document.getElementById("app");
   },
-  loadListItem() {
-    let className;
-    let text;
+  generateItems() {
+    let sClassName;
+    let sText;
     let eRuben;
-    for (let i = 1; i < 200; i += 2) {
-      text = "";
+    for (let i = 1; i <= 200; i += 2) {
+      sText = "";
       eRuben = "";
-      className = "";
+      sClassName = "";
       if (myLittleCalculator.isPremier(i)) {
-        className = "premier";
-        text = "premier";
+        sClassName = "premier";
+        sText = "premier";
       } else if (myLittleCalculator.isMultipleOf(i, 3)) {
         if (myLittleCalculator.isMultipleOf(i, 9)) {
-          text = "3 et 9";
-          className = "multiple-3-9";
+          sText = "3 et 9";
+          sClassName = "multiple-3-9";
         } else {
-          className = "multiple-3";
-          text = "3";
+          sClassName = "multiple-3";
+          sText = "3";
         }
       }
-      if (text !== "") {
-        eRuben = `<div class="ribbon-wrapper"><div class="ribbon">${text}</div></div>`;
+      if (sText !== "") {
+        eRuben = `<div class="ribbon-wrapper"><div class="ribbon">${sText}</div></div>`;
       }
-      this.app.insertAdjacentHTML('beforeend', `<li class="${className} grid__item">${i}${eRuben}</li>`);
+      this.app.insertAdjacentHTML('beforeend', `<li class="${sClassName} grid__item">${i}${eRuben}</li>`);
     }
   },
   addEventListeners() {
@@ -41,9 +41,8 @@ const app = {
   init() {
     document.documentElement.classList.add("js-enabled");
     this.cacheDom();
-    this.loadListItem();
+    this.generateItems();
     this.addEventListeners();
-    console.log(this.app);
   }
 };
 
@@ -53,7 +52,7 @@ const myLittleCalculator = {
       return false;
     }
     for (let i = 2; i < nbr; i++) {
-      if (nbr % i === 0) {
+      if (this.isMultipleOf(nbr, i)) {
         return false;
       }
     }

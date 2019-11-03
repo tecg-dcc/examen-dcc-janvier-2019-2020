@@ -1,4 +1,4 @@
-# Les nombres premiers
+# Les nombres premiers impairs
 
 > Examen DCC janvier 2019-2020
 

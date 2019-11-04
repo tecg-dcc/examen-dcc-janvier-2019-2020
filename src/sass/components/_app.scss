@@ -19,7 +19,7 @@ body {
   grid-template-columns: repeat(1, 1fr);
 }
 
-.grid__item--lighter {
+.grid__item--lighter:not(.animate) {
   opacity: 0.6;
 }
 
@@ -35,7 +35,6 @@ body {
   border-radius: 0.5rem;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
@@ -43,12 +42,9 @@ body {
 * {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                   supported by Chrome, Opera and Firefox */
 }
 
 .ribbon-wrapper {

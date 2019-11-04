@@ -1,6 +1,8 @@
 const app = {
   cacheDom() {
     this.app = document.getElementById("app");
+    this.eListItems = null;// not yet generated
+    this.eFirstListItems = null;// not yet generated
   },
   generateItems() {
     let sClassName;
@@ -25,27 +27,33 @@ const app = {
       if (sText !== "") {
         eRuben = `<div class="ribbon-wrapper"><div class="ribbon">${sText}</div></div>`;
       }
-      this.app.insertAdjacentHTML('beforeend', `<li data-idx="${i}" class="${sClassName} grid__item grid__item--${i}">${i}${eRuben}</li>`);
+      this.app.insertAdjacentHTML('beforeend', `<li class="${sClassName} grid__item">${i}${eRuben}</li>`);
     }
+    this.eListItems = this.app.querySelectorAll('.grid__item');
+    this.eFirstListItems = this.app.querySelectorAll('.premier');
   },
   addEventListeners() {
-    let iCurentItem;
-    this.app.querySelectorAll('.premier').forEach((element) => {
+    this.eFirstListItems.forEach((element) => {
       element.addEventListener("click", (event) => {
-          iCurentItem = event.currentTarget.dataset.idx;
-          event.currentTarget.classList.add("animate");
-          this.app.querySelectorAll(`.grid__item:not(.grid__item--${event.currentTarget.dataset.idx})`).forEach(function (elem) {
-            elem.classList.add('grid__item--lighter');
-          });
+        this.startAnimation(event);
       });
 
       element.addEventListener("transitionend", (event) => {
-        this.app.querySelectorAll(`.grid__item:not(.grid__item--${iCurentItem})`).forEach(function (elem) {
-          elem.classList.remove('grid__item--lighter');
-        });
-        event.currentTarget.classList.remove("animate");
+        this.stopAnimation(event);
       })
     })
+  },
+  startAnimation(event) {
+    event.currentTarget.classList.add("animate");
+    this.eListItems.forEach(function (elem) {
+      elem.classList.add('grid__item--lighter');
+    });
+  },
+  stopAnimation(event) {
+    event.currentTarget.classList.remove("animate");
+    this.eListItems.forEach(function (elem) {
+      elem.classList.remove('grid__item--lighter');
+    });
   },
   init() {
     document.documentElement.classList.add("js-enabled");

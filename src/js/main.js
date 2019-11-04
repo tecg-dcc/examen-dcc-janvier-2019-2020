@@ -25,15 +25,24 @@ const app = {
       if (sText !== "") {
         eRuben = `<div class="ribbon-wrapper"><div class="ribbon">${sText}</div></div>`;
       }
-      this.app.insertAdjacentHTML('beforeend', `<li class="${sClassName} grid__item">${i}${eRuben}</li>`);
+      this.app.insertAdjacentHTML('beforeend', `<li data-idx="${i}" class="${sClassName} grid__item grid__item--${i}">${i}${eRuben}</li>`);
     }
   },
   addEventListeners() {
-    this.app.querySelectorAll('.grid__item').forEach((element) => {
+    let iCurentItem;
+    this.app.querySelectorAll('.premier').forEach((element) => {
       element.addEventListener("click", (event) => {
-        event.currentTarget.classList.add("animate");
+          iCurentItem = event.currentTarget.dataset.idx;
+          event.currentTarget.classList.add("animate");
+          this.app.querySelectorAll(`.grid__item:not(.grid__item--${event.currentTarget.dataset.idx})`).forEach(function (elem) {
+            elem.classList.add('grid__item--lighter');
+          });
       });
+
       element.addEventListener("transitionend", (event) => {
+        this.app.querySelectorAll(`.grid__item:not(.grid__item--${iCurentItem})`).forEach(function (elem) {
+          elem.classList.remove('grid__item--lighter');
+        });
         event.currentTarget.classList.remove("animate");
       })
     })

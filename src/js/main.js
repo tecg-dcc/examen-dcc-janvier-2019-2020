@@ -1,53 +1,57 @@
 const app = {
-  cacheDom() {
-    this.app = document.getElementById("app");
-    this.eListItems = null;// not yet generated
-    this.eFirstListItems = null;// not yet generated
-  },
-  generateItems() {
-    let sClassName;
-    let sText;
-    let eRuben;
-    for (let i = 1; i <= 200; i += 2) {
-      sText = "";
-      eRuben = "";
-      sClassName = "";
-      if (myLittleCalculator.isPremier(i)) {
-        sClassName = "premier";
-        sText = "premier";
-      } else if (myLittleCalculator.isMultipleOf(i, 3)) {
-        if (myLittleCalculator.isMultipleOf(i, 9)) {
-          sText = "3 et 9";
-          sClassName = "multiple-3-9";
-        } else {
-          sClassName = "multiple-3";
-          sText = "3";
-        }
+  start: 1,
+  eListItems: [],
+  app: document.getElementById("app"),
+  generateItems(number = 100) {
+    number += this.start;
+    for (; this.start < number; this.start += 2) {
+      const li = this.generateItem(this.start);
+      if (li.isFirst) {
+        li.item.addEventListener('click', (event) => {
+          this.startAnimation(event)
+        });
+        li.item.addEventListener('transitionend', (event) => {
+          this.stopAnimation(event)
+        });
       }
-      if (sText !== "") {
-        eRuben = `<div class="ribbon-wrapper"><div class="ribbon">${sText}</div></div>`;
-      }
-      this.app.insertAdjacentHTML('beforeend', `<li class="${sClassName} grid__item">${i}${eRuben}</li>`);
+      this.eListItems.push(li.item);
+      this.app.appendChild(li.item);
     }
-    this.eListItems = this.app.querySelectorAll('.grid__item');
-    this.eFirstListItems = this.app.querySelectorAll('.premier');
+  },
+  generateItem(idx) {
+    const oResult = myLittleCalculator.isFirst(idx);
+    const li = document.createElement('li');
+    li.textContent = idx;
+    li.dataset.sum = oResult.sum;
+    if (oResult.isFirst) {
+      li.classList.add('premier');
+      li.insertAdjacentHTML('beforeend', `<div class="ribbon-wrapper"><div class="ribbon">premier</div></div>`)
+    } else if (myLittleCalculator.isMultipleOf(idx, 3)) {
+      if (myLittleCalculator.isMultipleOf(this.start, 9)) {
+        li.classList.add('multiple-3-9');
+        li.insertAdjacentHTML('beforeend', `<div class="ribbon-wrapper"><div class="ribbon">3 et 9</div></div>`)
+      } else {
+        li.classList.add('multiple-3');
+        li.insertAdjacentHTML('beforeend', `<div class="ribbon-wrapper"><div class="ribbon">3</div></div>`)
+      }
+    }
+    li.classList.add("grid__item");
+    return { isFirst: oResult.isFirst, item: li };
   },
   addEventListeners() {
-    this.eFirstListItems.forEach((element) => {
-      element.addEventListener("click", (event) => {
-        this.startAnimation(event);
-      });
-
-      element.addEventListener("transitionend", (event) => {
-        this.stopAnimation(event);
-      })
+    document.addEventListener("scroll", () => {
+      if (window.scrollY + window.innerHeight >= this.app.scrollHeight) {
+        this.generateItems();
+      }
     })
   },
   startAnimation(event) {
     event.currentTarget.classList.add("animate");
-    this.eListItems.forEach(function (elem) {
-      elem.classList.add('grid__item--lighter');
-    });
+    [event.currentTarget.childNodes[0].textContent, event.currentTarget.dataset.sum] = [event.currentTarget.dataset.sum, event.currentTarget.childNodes[0].textContent];
+    console.log(this);
+    for (let item of this.eListItems) {
+      item.classList.add('grid__item--lighter');
+    }
   },
   stopAnimation(event) {
     event.currentTarget.classList.remove("animate");
@@ -57,23 +61,24 @@ const app = {
   },
   init() {
     document.documentElement.classList.add("js-enabled");
-    this.cacheDom();
     this.generateItems();
     this.addEventListeners();
   }
 };
 
 const myLittleCalculator = {
-  isPremier(nbr) {
+  isFirst(nbr) {
+    let iSum = nbr + 1;
     if (nbr < 2) {
-      return false;
+      return { isFirst: false, sum: -1 };
     }
     for (let i = 2; i < nbr; i++) {
+      iSum += i;
       if (this.isMultipleOf(nbr, i)) {
-        return false;
+        return { isFirst: false, sum: -1 };
       }
     }
-    return true;
+    return { isFirst: true, sum: iSum };
   },
   isMultipleOf(base, multiple) {
     return base % multiple === 0;

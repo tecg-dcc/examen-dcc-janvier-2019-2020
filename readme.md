@@ -60,7 +60,7 @@ Dans le cadre cet examen nous vous demandons de produire par JavaScript du code 
 1. Pendant la durée de l'animation de l'item qui contient un nombre premier, ajoutez à tous les éléments de la liste la classe grid__item--lighter afin de les rendre plus transparents. Notez que vous pouvez aussi appliquer cette classe à l'élément courant (CSS se charge de cibler les bons éléments).
 	![step3](./img/step3.gif)
 1. Quand on clique sur une case qui contient un nombre premier, on affiche la somme des nombres pour arriver à ce nombre. Ex: si l'on clique sur le nombre premier 3 alors on affichera sa somme, 1+2+3 = 6. Quand on clique la deuxième fois alors le nombre premier initial apparait.
-		![step5](./img/step3.gif)
+		![step5](./img/step5.gif)
 
 ⚠️  Assurez-vous que les événements aux clics fonctionnent aussi sur les nouveaux éléments générés au scroll. 😉
 

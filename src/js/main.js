@@ -25,7 +25,7 @@ const app = {
     li.dataset.sum = oResult.sum;
     if (oResult.isFirst) {
       li.classList.add('premier');
-      li.insertAdjacentHTML('beforeend', `<div class="ribbon-wrapper"><div class="ribbon">premier</div></div>`)
+      li.insertAdjacentHTML('beforeend', `<div class="ribbon-wrapper"><div data-text="somme" class="ribbon">premier</div></div>`)
     } else if (myLittleCalculator.isMultipleOf(idx, 3)) {
       if (myLittleCalculator.isMultipleOf(this.start, 9)) {
         li.classList.add('multiple-3-9');
@@ -48,7 +48,7 @@ const app = {
   startAnimation(event) {
     event.currentTarget.classList.add("animate");
     [event.currentTarget.childNodes[0].textContent, event.currentTarget.dataset.sum] = [event.currentTarget.dataset.sum, event.currentTarget.childNodes[0].textContent];
-    console.log(this);
+    [event.currentTarget.querySelector("[data-text]").dataset.text,event.currentTarget.querySelector("[data-text]").textContent] = [event.currentTarget.querySelector("[data-text]").textContent,event.currentTarget.querySelector("[data-text]").dataset.text];
     for (let item of this.eListItems) {
       item.classList.add('grid__item--lighter');
     }

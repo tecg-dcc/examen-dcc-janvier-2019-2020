@@ -5,7 +5,7 @@
 ## Consignes pour l'examen
 
 1. Renommez le dossier qui se trouve sur le bureau de votre machine qui porte le nom `examen-dcc-janvier-2019-2010` en `examen-dcc-janvier-2019-2010-nom-prenom-group`.
-1. Dans le cadre de cet examen de D*éveloppement Côté Client* vous devez uniquement vous focaliser sur le fichier `main.js` qui se trouve dans le dossier `src/js`. Mis à part ajouter la balise `script`, on ne vous demande pas de modifier le HTML ni le CSS qui s'y rapporte.
+1. Dans le cadre de cet examen de D*éveloppement Côté Client* vous devez uniquement vous focaliser sur le fichier `main.js` qui se trouve à la racine. Mis à part ajouter la balise `script`, on ne vous demande pas de modifier le html ni le CSS qui s'y rapporte.
 1. Cet examen dure maximum 4 heures.
 
 ## HTML
@@ -14,7 +14,7 @@
 
 Dans le cadre cet examen nous vous demandons de produire par JavaScript du code HTML. Plus précisément, de produire une série d’items d'une liste ordonnée, en respectant les règles suivantes:
 
-1. Mais avant de ça, ajoutez à l'élément racine `html` la classe `js-enabled`.
+1. Mais avant ça, ajoutez à l'élément racine `html` la classe `js-enabled`.
 1. Produisez uniquement des nombres impairs allant de 1 à 200. Le nombre `25` représente ici un des 100 nombres possibles.
 
     ~~~html
@@ -31,7 +31,7 @@ Dans le cadre cet examen nous vous demandons de produire par JavaScript du code 
     </li>
     ~~~
 
-1. S'il s'agit d'un nombre divisible par 3 il faut ajouter la classe `multiple-3` à l'élément `<li>` ainsi 2 que éléments `.ribbon-wrapper` et `ribbon` constituant le ruban :
+1. S'il s'agit d'un nombre divisible par 3 il faut ajouter la classe `multiple-3` à l'élément `<li>` ainsi que 2 que éléments `.ribbon-wrapper` et `ribbon` constituant le ruban :
 
     ~~~html
     <li class="multiple-3 grid__item animate">15
@@ -82,7 +82,7 @@ Les vingt-cinq nombres premiers inférieurs à 100 sont :
 
 * `element.scrollHeight` : L'attribut en lecture seule `element.scrollHeight` est une mesure de la hauteur du contenu d'un élément qui inclut le contenu débordant et non visible à l'écran. La valeur `scrollHeight` est égale à la hauteur minimum dont l'élément aurait besoin pour que le contenu rentre dans le viewpoint sans utiliser de barre de défilement. Cela inclut les marges internes, mais pas les marges externes.
 
-* HTML5 permet d'associer des données directement dans un élément HTML à l'aide des attributs `data-*` ( où l'étoile représente un identifiant valide). Par exemple 😉 : 
+* HTML5 permet d'associer des données directement dans un élément html à l'aide des attributs `data-*` ( où l'étoile représente un identifiant valide). Par exemple 😉 : 
   
     ```html
     <div data-text="somme" class="ribbon">premier</div>

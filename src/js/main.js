@@ -22,8 +22,8 @@ const app = {
     const oResult = myLittleCalculator.isFirst(idx);
     const li = document.createElement('li');
     li.textContent = idx;
-    li.dataset.sum = oResult.sum;
-    if (oResult.isFirst) {
+    li.dataset.sum = `${idx * ((idx + 1) / 2)}`;
+    if (oResult) {
       li.classList.add('premier');
       li.insertAdjacentHTML('beforeend', `<div class="ribbon-wrapper"><div data-text="somme" class="ribbon">premier</div></div>`)
     } else if (myLittleCalculator.isMultipleOf(idx, 3)) {
@@ -36,7 +36,7 @@ const app = {
       }
     }
     li.classList.add("grid__item");
-    return { isFirst: oResult.isFirst, item: li };
+    return { isFirst: oResult, item: li };
   },
   addEventListeners() {
     document.addEventListener("scroll", () => {
@@ -48,7 +48,7 @@ const app = {
   startAnimation(event) {
     event.currentTarget.classList.add("animate");
     [event.currentTarget.childNodes[0].textContent, event.currentTarget.dataset.sum] = [event.currentTarget.dataset.sum, event.currentTarget.childNodes[0].textContent];
-    [event.currentTarget.querySelector("[data-text]").dataset.text,event.currentTarget.querySelector("[data-text]").textContent] = [event.currentTarget.querySelector("[data-text]").textContent,event.currentTarget.querySelector("[data-text]").dataset.text];
+    [event.currentTarget.querySelector("[data-text]").dataset.text, event.currentTarget.querySelector("[data-text]").textContent] = [event.currentTarget.querySelector("[data-text]").textContent, event.currentTarget.querySelector("[data-text]").dataset.text];
     for (let item of this.eListItems) {
       item.classList.add('grid__item--lighter');
     }
@@ -66,19 +66,17 @@ const app = {
   }
 };
 
-const myLittleCalculator = {
+window.myLittleCalculator = {
   isFirst(nbr) {
-    let iSum = nbr + 1;
     if (nbr < 2) {
-      return { isFirst: false, sum: -1 };
+      return false;
     }
-    for (let i = 2; i < nbr; i++) {
-      iSum += i;
+    for (let i = 2; i <= Math.sqrt(nbr); i += 1) {
       if (this.isMultipleOf(nbr, i)) {
-        return { isFirst: false, sum: -1 };
+        return false;
       }
     }
-    return { isFirst: true, sum: iSum };
+    return true;
   },
   isMultipleOf(base, multiple) {
     return base % multiple === 0;

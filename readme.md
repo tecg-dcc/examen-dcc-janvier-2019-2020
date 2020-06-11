@@ -4,7 +4,7 @@
 
 ## Consignes pour l'examen
 
-1. Renommez le dossier qui se trouve sur le bureau de votre machine qui porte le nom `examen-dcc-janvier-2019-2010` en `examen-dcc-janvier-2019-2010-nom-prenom-group`.
+1. Renommez le dossier qui se trouve sur le bureau de votre machine qui porte le nom `examen-dcc-janvier-2019-2020` en `examen-dcc-janvier-2019-2020-nom-prenom-group`.
 1. Dans le cadre de cet examen de D*éveloppement Côté Client* vous devez uniquement vous focaliser sur le fichier `main.js` qui se trouve à la racine. Mis à part ajouter la balise `script`, on ne vous demande pas de modifier le html ni le CSS qui s'y rapporte.
 1. Cet examen dure maximum 4 heures.
 

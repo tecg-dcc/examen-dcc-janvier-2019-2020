@@ -1,6 +1,6 @@
 # Ce n'est pas un FizzBuzz
 
-> Examen DCC janvier 2019-2020
+> Examen DCC aout 2019-2020
 
 ## Consignes pour l'examen
 

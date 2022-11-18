@@ -1,6 +1,6 @@
 # Ce n'est pas un FizzBuzz
 
-> Examen DCC aout 2019-2020
+> Examen DCC janvier 2019-2020
 
 ## Consignes pour l'examen
 
@@ -87,9 +87,9 @@ Les vingt-cinq nombres premiers inférieurs à 100 sont :
     ```html
     <div data-text="somme" class="ribbon">premier</div>
     ```
-Pour récupérer la valeur de l'attribut en JavaScript, une des possibilités consiste à cibler l'élément puis à récupérer la collection des attributs data et enfin de prendre l'item de la liste qui nous intéresse.
+  Pour récupérer la valeur de l'attribut en JavaScript, une des possibilités consiste à cibler l'élément puis à récupérer la collection des attributs data et enfin de prendre l'item de la liste qui nous intéresse.
    ```javascript
-document.querySelector("[data-text]").dataset.text
+  document.querySelector("[data-text]").dataset.text
    ```
 
 * La propriété `textContent` représente le contenu textuel d'un nœud et de ses descendants.
